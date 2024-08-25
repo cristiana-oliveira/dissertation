@@ -60,7 +60,7 @@ jobs:
 
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
-        run: helm template my-app helm/my-app --set image.repository=my-app --set image.tag=${{ github.sha }} > k8s-manifests.yaml
+        run: helm template my-app helm/my-app --set image.repository=dissertation --set image.tag=${{ github.sha }} > k8s-manifests.yaml
 
       # Step 11: Deploy to Minikube using Helm
       - name: Deploy to Minikube
