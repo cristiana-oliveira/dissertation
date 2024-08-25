@@ -52,7 +52,10 @@ jobs:
 
       # Step 8: Build Docker Image with Minikube's Docker
       - name: Build Docker Image
-        run: docker build -t dissertation:${{ github.sha }} .
+        run: |
+         docker build -t myrepo:${{ github.sha }} .
+         echo -n "verifying images:"
+         docker images 
 
       # Step 9: Load the Docker image into Minikube
       - name: Load Docker Image into Minikube
