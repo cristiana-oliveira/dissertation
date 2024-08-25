@@ -73,7 +73,8 @@ jobs:
             minikube service list
             kubectl get deploy -n default
             kubectl get pods -n default
-            kubectl wait --for=condition=ready pod -l app=dissertation --timeout=5m -n default
+            kubectl logs -l app=dissertation 
+            kubectl wait --for=condition=ready pod -l app=dissertation --timeout=1m -n default
             kubectl get pods -n default
             echo "------------------opening the service------------------"
             curl $(minikube service release-dissertation --url)     
