@@ -59,7 +59,7 @@ jobs:
 
       # Step 9: Load the Docker image into Minikube
       - name: Load Docker Image into Minikube
-        run: minikube image load dissertation:${{ github.sha }}
+        run: minikube image load myrepo:${{ github.sha }}
 
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
