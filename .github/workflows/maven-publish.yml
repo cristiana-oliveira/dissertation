@@ -71,4 +71,4 @@ jobs:
       - name: Test service URLs
         run: |
             minikube service list
-            minikube service ${{ github.event.release.name }}-dissertation --url   
+            minikube service dissertation-dissertation --url   
