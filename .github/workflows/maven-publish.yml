@@ -52,20 +52,20 @@ jobs:
 
       # Step 8: Build Docker Image with Minikube's Docker
       - name: Build Docker Image
-        run: docker build -t my-app:${{ github.sha }} .
+        run: docker build -t dissertation:${{ github.sha }} .
 
       # Step 9: Load the Docker image into Minikube
       - name: Load Docker Image into Minikube
-        run: minikube image load my-app:${{ github.sha }}
+        run: minikube image load dissertation:${{ github.sha }}
 
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
-        run: helm template my-app helm/my-app --set image.repository=dissertation --set image.tag=${{ github.sha }} > k8s-manifests.yaml
+        run: helm template dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }} > k8s-manifests.yaml
 
       # Step 11: Deploy to Minikube using Helm
       - name: Deploy to Minikube
-        run: helm upgrade --install my-app helm/my-app --set image.repository=my-app --set image.tag=${{ github.sha }}
+        run: helm upgrade --install dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }}
 
       # Step 12: Verify the Deployment
       - name: Verify Deployment
-        run: kubectl rollout status deployment/my-app
+        run: kubectl rollout status deployment/dissertation
