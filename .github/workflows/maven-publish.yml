@@ -73,4 +73,5 @@ jobs:
             minikube service list
             kubectl get deploy -n default
             kubectl get pods -n default
-            minikube service release-dissertation --url  
+            echo "------------------opening the service------------------"
+            curl $(minikube service release-dissertation --url)     
