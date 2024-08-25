@@ -60,15 +60,17 @@ jobs:
 
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
-        run: helm template dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }} > k8s-manifests.yaml
+        run: helm template release helm/dissertation --set image.repository=myrepo --set image.tag=${{ github.sha }} > k8s-manifests.yaml
 
       # Step 11: Deploy to Minikube using Helm
       - name: Deploy to Minikube
         run: |
-          helm upgrade --install dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }}
+          helm upgrade --install release helm/dissertation --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
       # Step 12: Test service URLs
       - name: Test service URLs
         run: |
             minikube service list
-            minikube service dissertation-dissertation --url  
+            kubectl get deploy -n default
+            kubectl get pods -n default
+            minikube service release-dissertation --url  

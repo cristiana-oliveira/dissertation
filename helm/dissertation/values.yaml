@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: dissertation
+  repository: myrepo
   tag: "latest"
   pullPolicy: IfNotPresent
 
