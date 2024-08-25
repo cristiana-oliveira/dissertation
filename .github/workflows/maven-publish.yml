@@ -64,8 +64,11 @@ jobs:
 
       # Step 11: Deploy to Minikube using Helm
       - name: Deploy to Minikube
-        run: helm upgrade --install dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }}
+        run: |
+          helm upgrade --install dissertation helm/dissertation --set image.repository=dissertation --set image.tag=${{ github.sha }}
 
-      # Step 12: Verify the Deployment
-      - name: Verify Deployment
-        run: kubectl rollout status deployment/dissertation -n default
+      # Step 12: Test service URLs
+      - name: Test service URLs
+        run: |
+            minikube service list
+            minikube service ${{ .Release.Name }}-dissertation --url   
