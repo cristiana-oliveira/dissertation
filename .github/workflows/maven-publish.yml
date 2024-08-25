@@ -54,8 +54,6 @@ jobs:
       - name: Build Docker Image
         run: |
          docker build -t myrepo:${{ github.sha }} .
-         echo -n "verifying images:"
-         docker images 
 
       # Step 9: Load the Docker image into Minikube
       - name: Load Docker Image into Minikube
@@ -76,6 +74,5 @@ jobs:
             minikube service list
             kubectl wait --for=condition=ready pod -l app=dissertation --timeout=1m -n default
             kubectl get pods
-            kubectl describe svc release-dissertation
-            echo "------------------opening the service------------------"
-            curl $(minikube service release-dissertation --url)     
+            kubectl port-forward svc/release-dissertation 80:80
+            curl localhost:80/app
