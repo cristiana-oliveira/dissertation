@@ -74,5 +74,6 @@ jobs:
             minikube service list
             kubectl wait --for=condition=ready pod -l app=dissertation --timeout=1m -n default
             kubectl get pods
-            sudo kubectl port-forward svc/release-dissertation 80:80
-            sudo curl localhost:80/app
+            minikube service release-dissertation --url
+            echo "------------------opening the service------------------"
+            sudo curl $(minikube service release-dissertation --url)     
