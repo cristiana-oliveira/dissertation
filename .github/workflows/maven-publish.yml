@@ -72,4 +72,5 @@ jobs:
             kubectl get pods
             minikube service release-dissertation --url
             echo "------------------opening the service------------------"
-            sudo curl $(minikube service release-dissertation --url)     
+            kubectl port-forward svc/release-dissertation 80:80
+            sudo curl $(http://localhost:80/app/home)     
