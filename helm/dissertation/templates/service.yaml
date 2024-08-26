@@ -8,5 +8,5 @@ spec:
   type: NodePort
   ports:
     - name: http
-      port: {{ .Values.service.port }}
+      port: {{ .Values.service.port }}80
       targetPort: 8080
