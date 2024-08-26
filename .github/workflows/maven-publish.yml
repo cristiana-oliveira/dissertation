@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2: Set up JDK 17 (or your project’s specific version)
       - name: Set up JDK 17
@@ -41,10 +41,6 @@ jobs:
       # Step 6: Set up Minikube
       - name: Set up Minikube
         uses: medyagh/setup-minikube@latest
-        with:
-          minikube-version: 'latest'
-          kubernetes-version: 'v1.26.0'  # Specify the Kubernetes version if needed
-          driver: docker  # Use Docker as the driver for Minikube
 
       # Step 7: Set up Docker for Minikube
       - name: Set up Docker for Minikube
