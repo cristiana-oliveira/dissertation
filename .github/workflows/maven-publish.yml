@@ -73,4 +73,4 @@ jobs:
             kubectl describe svc release-dissertation
             minikube service release-dissertation --url
             echo "------------------opening the service------------------"
-            sudo curl $(minikube service release-dissertation --url)/app/home     
+            curl $(minikube service release-dissertation --url)/app/home     
