@@ -67,9 +67,6 @@ jobs:
       # Step 12: Test service URLs
       - name: Test service URLs
         run: |
-            mkdir -p $HOME/.kube
-            sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-            sudo chown $(id -u):$(id -g) $HOME/.kube/config
             minikube service list
             kubectl wait --for=condition=ready pod -l app=dissertation --timeout=1m -n default
             kubectl get pods
