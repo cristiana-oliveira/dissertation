@@ -73,6 +73,4 @@ jobs:
             kubectl describe svc release-dissertation
             minikube service release-dissertation --url
             echo "------------------opening the service------------------"
-            minikube ip
-            curl $(minikube ip):8080/app/home
             curl $(minikube service release-dissertation --url)/app/home     
