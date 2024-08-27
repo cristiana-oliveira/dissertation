@@ -72,5 +72,6 @@ jobs:
             kubectl get pods
             kubectl describe svc release-dissertation
             minikube service release-dissertation --url
+            minikube tunnel
             echo "------------------opening the service------------------"
             curl $(minikube service release-dissertation --url)/app/home     
