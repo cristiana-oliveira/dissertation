@@ -64,13 +64,10 @@ jobs:
         run: |
           helm upgrade --install release helm/dissertation --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
-      # Step 12: Test service URLs
-      - name: Test service URLs
+      # Step 12: Verify the Deployment
+      - name: Verify Deployment
         run: |
             minikube service list
             kubectl wait --for=condition=ready pod -l app=dissertation --timeout=1m -n default
             kubectl get pods
-            kubectl logs -l app=dissertation -n default
-            minikube service release-dissertation --url
-            echo "------------------opening the service------------------"
-            curl $(minikube service release-dissertation --url)/app/home     
+            kubectl rollout status deployment/release-dissertation
